@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\entorno"
+			
+		}
+	],
+	"settings": {
+		"python.pythonPath": "C:\\entorno\\mientorno\\Scripts\\python.exe"
+	}
+}

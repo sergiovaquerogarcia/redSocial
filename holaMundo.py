@@ -1,0 +1,7 @@
+print ("Hola Entornos de Desarrollo")
+print ("Los integrantes del grup 6 son:")
+print ("Sergio Vaquero")
+print ("Ayoub Hiar")
+print ("David Navarro Mendez")
+print ("Alejandro Sancho Imbernon")
+print ("Aunque","de","momento","el","único","que","ha","escrito","es:",sep="**",end=" ->>- Hola!! Sergio Vaquero")
