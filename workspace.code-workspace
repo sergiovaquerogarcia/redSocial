@@ -9,6 +9,7 @@
 		}
 	],
 	"settings": {
-		"python.pythonPath": "C:\\entorno\\mientorno\\Scripts\\python.exe"
+		"python.pythonPath": "c:\\entorno\\mientorno\\Scripts\\python.exe",
+		"liveServer.settings.multiRootWorkspaceName": "entorno"
 	}
 }
