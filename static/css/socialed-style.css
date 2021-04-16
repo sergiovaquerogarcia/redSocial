@@ -5,7 +5,7 @@
   font-family: Helvetica, Geneva, Arial, sans-serif;
   padding-left: 20px;
   background-color: #FFFFFF; /* beige */
-  font-color: #2A2929; /* dark grey */
+  color: #2A2929; /* dark grey */
   margin: 10px;
 }
 a:link{
@@ -18,27 +18,25 @@ a:hover {
 h1 {
    color:blue;
    font-size:20pt;
-
-
+   border: crimson 2px solid;
 }
 form {
-
-
-
-
-
+  width: 620px;
+	padding: 16px;
+	border-radius: 10px;
+	margin: auto;
+	background-color: rgb(204, 97, 97);
 }
 label {
-
-
-
-
-
+  width: 150px;
+	font-weight: bold;
+	display: block;
+  color:white;
 }
 .inputs {
-
-
-
-
+  width: 200px;
+	padding: 3px 10px;
+	margin: 8px 0;
+	display: block;
 }
 
