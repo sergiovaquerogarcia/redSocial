@@ -21,8 +21,6 @@ h1 {
    border: crimson 2px solid;
    font-family:'Lobster';
    border-radius: 50px 50px 50px 50px;
-  -moz-border-radius: 50px 50px 50px 50px;
-  -webkit-border-radius: 50px 50px 50px 50px;
   }
 form {
   width: 620px;
