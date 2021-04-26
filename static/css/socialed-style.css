@@ -16,9 +16,10 @@ a:hover {
   color:green;
 }
 h1 {
-   color:blue;
+  color:#FCA205;
    font-size:20pt;
    border: crimson 2px solid;
+   font-family:'Lobster';
 }
 form {
   width: 620px;
