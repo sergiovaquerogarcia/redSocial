@@ -21,6 +21,7 @@ h1 {
    border: crimson 2px solid;
    font-family:'Lobster';
    border-radius: 45px 45px 45px 45px;
+   margin: 2%;
   }
 form {
   width: 620px;
