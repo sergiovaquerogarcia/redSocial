@@ -4,6 +4,16 @@
 from flask import Flask, request
 app = Flask(__name__)
 
+from flask import render_template
+# este codigo controla los errores de campos ausentes
+def process_missingFields(campos, next_page):
+    """
+    :param campos: Lista de Campos que faltan
+    :param next_page: ruta al pulsar botón continuar
+    :return: plantilla generada
+    """
+    return render_template("missingFields.html", inputs=campos, next=next_page)
+
 
 @app.route('/', methods=['GET'])
 def index():
@@ -34,7 +44,7 @@ def processLogin():
               if value is None:
                   missing.append(field)
        if missing:
-              return "Warning: Some fields are missing"
+              return process_missingFields(missing, "/login")
 
 
        return '<!DOCTYPE html> ' \
@@ -61,7 +71,7 @@ def processSignup():
               if value is None:
                      missing.append(field)
        if missing:
-              return "Warning: Some fields are missing"
+              return process_missingFields(missing, "/signup")
 
        return '<!DOCTYPE html> ' \
            '<html lang="es">' \
@@ -89,7 +99,7 @@ def processHome():
 		if value is None:
 			missing.append(field)
 	if missing:
-		return "Warning: Some fields are missing"
+		return process_missingFields(missing, "/home")
 
 	return '<!DOCTYPE html> ' \
            '<html lang="es">' \
@@ -118,3 +128,4 @@ def processHome():
 # start the server with the 'run()' method
 if __name__ == '__main__':
     app.run(debug=True, port=55555)
+
