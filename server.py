@@ -84,6 +84,7 @@ def processSignup():
                      missing.append(field)
        if missing:
               return process_missingFields(missing, "/signup")
+       
        return create_user_file(request.form['nickname'], request.form['email'], request.form['passwd'],
                             request.form['confirm'])
        #return '<!DOCTYPE html> ' \
@@ -105,7 +106,8 @@ def processSignup():
 
 @app.route('/processHome', methods=['GET', 'POST'])
 def processHome():
-	missing = []
+    
+    missing = []
 	fields = ['message', 'last', 'post_submit']
 	for field in fields:
 		value = request.form.get(field, None)
@@ -113,28 +115,29 @@ def processHome():
 			missing.append(field)
 	if missing:
 		return process_missingFields(missing, "/home")
-   
-    return '<!DOCTYPE html> ' \
-          '<html lang="es">' \
-          '<head>' \
-          '<link href="static/css/socialed-style.css" rel="stylesheet" type="text/css"/>' \
-           '<title> Inicio - SocialED </title>' \
-           '</head>' \
-           '<body> <div id="container">' \
-		   '<a href="/"> SocialED </a> | <a href="home"> Home </a> | <a href="login"> Log In </a> | <a href="signup"> Sign Up </a>' \
-          '<h1>Hi, How are you?</h1>' \
-               	'<form action="processHome" method="post" name="home"> ' \
-			'<label for="message">Say something:</label><div class="inputs">' \
-			'<input id="message" maxlength="128" name="message" size="80" type="text" required="true" value=""/>' \
-			'<input id="last" type="hidden" name="last" required="true" value="' + request.form['last'] + '<br>'+ request.form['message'] + '">' \
-	                '</div>' \
-                    	'<div class="inputs">' \
-                       '<input id="post_submit" name="post_submit" type="submit" value="Post!"/>' \
-           		'<br><br>Previous Posts: <br>' + request.form['last'] + '<br>' +request.form['message'] + \
-                	'</form>' \
-            		'</div></div>' \
-          '</body>' \
-          '</html>'
+
+	return render_template('home.html', logged=True, nickname=session['user_name'], messages=session['messages'])
+   #return '<!DOCTYPE html> ' \
+   #        '<html lang="es">' \
+   #        '<head>' \
+   #         '<link href="static/css/socialed-style.css" rel="stylesheet" type="text/css"/>' \
+   #        '<title> Inicio - SocialED </title>' \
+   #        '</head>' \
+   #        '<body> <div id="container">' \
+   #	    '<a href="/"> SocialED </a> | <a href="home"> Home </a> | <a href="login"> Log In </a> | <a href="signup"> Sign Up </a>' \
+   #        '<h1>Hi, How are you?</h1>' \
+   #             	'<form action="processHome" method="post" name="home"> ' \
+   #		'<label for="message">Say something:</label><div class="inputs">' \
+   #		'<input id="message" maxlength="128" name="message" size="80" type="text" required="true" value=""/>' \
+   #		'<input id="last" type="hidden" name="last" required="true" value="' + request.form['last'] + '<br>'+ request.form['message'] + '">' \
+   #	                '</div>' \
+   #                 	'<div class="inputs">' \
+   #                      '<input id="post_submit" name="post_submit" type="submit" value="Post!"/>' \
+   #        		'<br><br>Previous Posts: <br>' + request.form['last'] + '<br>' +request.form['message'] + \
+   #             	'</form>' \
+   #         		'</div></div>' \
+   #        '</body>' \
+   #        '</html>'
 
 def process_error(message, next_page):
     """
@@ -166,7 +169,8 @@ def load_user(email, passwd):
     session['password'] = passwd
     session['email'] = email
     session['friends'] = data['friends']
-    return redirect(url_for("home"))
+    #return redirect(url_for("home"))
+    return render_template('home.html', logged=True, nickname=session['user_name'], messages=session['messages'])
 
 def save_current_user():
     datos = {
