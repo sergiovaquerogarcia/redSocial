@@ -45,7 +45,6 @@ def signup():
     return render_template("signup.html")
    
 
-
 @app.route('/processLogin', methods=['GET', 'POST'])
 def processLogin():
        missing = []
@@ -57,20 +56,22 @@ def processLogin():
        if missing:
               return process_missingFields(missing, "/login")
 
+       return load_user(request.form['email'], request.form['passwd'])
 
-       return '<!DOCTYPE html> ' \
-           '<html lang="es">' \
-           '<head>' \
-           '<link href="static/css/socialed-style.css" rel="stylesheet" type="text/css"/>' \
-           '<title> Home - SocNet </title>' \
-           '</head>' \
-           '<body> <div id ="container">' \
-		   '<a href="/"> SocNet </a> | <a href="home"> Home </a> | <a href="login"> Log In </a> | <a href="signup"> Sign Up </a>' \
-           '<h1>Data from Form: Login</h1>' \
-	       '<form><label>email: ' + request.form['email'] + \
-	       '</label><br><label>passwd: ' + request.form['passwd'] + \
-           '</label></form></div></body>' \
-           '</html>'
+        
+       #return '<!DOCTYPE html> ' \
+       #    '<html lang="es">' \
+       #    '<head>' \
+       #    '<link href="static/css/socialed-style.css" rel="stylesheet" type="text/css"/>' \
+      #    '<title> Home - SocNet </title>' \
+      #     '</head>' \
+      #     '<body> <div id ="container">' \
+	#	   '<a href="/"> SocNet </a> | <a href="home"> Home </a> | <a href="login"> Log In </a> | <a href="signup"> Sign Up </a>' \
+     #      '<h1>Data from Form: Login</h1>' \
+	 #      '<form><label>email: ' + request.form['email'] + \
+	#       '</label><br><label>passwd: ' + request.form['passwd'] + \
+    #       '</label></form></div></body>' \
+     #      '</html>'
 
 
 @app.route('/processSignup', methods=['GET', 'POST'])
@@ -83,22 +84,23 @@ def processSignup():
                      missing.append(field)
        if missing:
               return process_missingFields(missing, "/signup")
-
-       return '<!DOCTYPE html> ' \
-           '<html lang="es">' \
-           '<head>' \
-           '<link href="static/css/socialed-style.css" rel="stylesheet" type="text/css"/>' \
-           '<title> Inicio - SocialED </title>' \
-           '</head>' \
-           '<body> <div id ="container">' \
-		   '<a href="/"> SocialED </a> | <a href="home"> Home </a> | <a href="login"> Log In </a> | <a href="signup"> Sign Up </a>' \
-           '<h1>Data from Form: Sign Up</h1>' \
-           '<form><label>Nickame: ' + request.form['nickname'] + \
-	       '</label><br><label>email: ' + request.form['email'] + \
-	       '</label><br><label>passwd: ' + request.form['passwd'] + \
-	       '</label><br><label>confirm: ' + request.form['confirm'] + \
-           '</label></form></div></body>' \
-           '</html>'
+       return create_user_file(request.form['nickname'], request.form['email'], request.form['passwd'],
+                            request.form['confirm'])
+       #return '<!DOCTYPE html> ' \
+       #    '<html lang="es">' \
+       #    '<head>' \
+       #    '<link href="static/css/socialed-style.css" rel="stylesheet" type="text/css"/>' \
+       #    '<title> Inicio - SocialED </title>' \
+       #    '</head>' \
+       #    '<body> <div id ="container">' \
+	   #	   '<a href="/"> SocialED </a> | <a href="home"> Home </a> | <a href="login"> Log In </a> | <a href="signup"> Sign Up </a>' \
+       #    '<h1>Data from Form: Sign Up</h1>' \
+       #    '<form><label>Nickame: ' + request.form['nickname'] + \
+	   #    '</label><br><label>email: ' + request.form['email'] + \
+	   #    '</label><br><label>passwd: ' + request.form['passwd'] + \
+	   #    '</label><br><label>confirm: ' + request.form['confirm'] + \
+       #    '</label></form></div></body>' \
+       #    '</html>'
 
 
 @app.route('/processHome', methods=['GET', 'POST'])
@@ -111,28 +113,28 @@ def processHome():
 			missing.append(field)
 	if missing:
 		return process_missingFields(missing, "/home")
-
-	return '<!DOCTYPE html> ' \
-           '<html lang="es">' \
-           '<head>' \
-           '<link href="static/css/socialed-style.css" rel="stylesheet" type="text/css"/>' \
+   
+    return '<!DOCTYPE html> ' \
+          '<html lang="es">' \
+          '<head>' \
+          '<link href="static/css/socialed-style.css" rel="stylesheet" type="text/css"/>' \
            '<title> Inicio - SocialED </title>' \
            '</head>' \
            '<body> <div id="container">' \
 		   '<a href="/"> SocialED </a> | <a href="home"> Home </a> | <a href="login"> Log In </a> | <a href="signup"> Sign Up </a>' \
-           '<h1>Hi, How are you?</h1>' \
-                	'<form action="processHome" method="post" name="home"> ' \
+          '<h1>Hi, How are you?</h1>' \
+               	'<form action="processHome" method="post" name="home"> ' \
 			'<label for="message">Say something:</label><div class="inputs">' \
 			'<input id="message" maxlength="128" name="message" size="80" type="text" required="true" value=""/>' \
 			'<input id="last" type="hidden" name="last" required="true" value="' + request.form['last'] + '<br>'+ request.form['message'] + '">' \
-	                 '</div>' \
+	                '</div>' \
                     	'<div class="inputs">' \
-                        '<input id="post_submit" name="post_submit" type="submit" value="Post!"/>' \
+                       '<input id="post_submit" name="post_submit" type="submit" value="Post!"/>' \
            		'<br><br>Previous Posts: <br>' + request.form['last'] + '<br>' +request.form['message'] + \
                 	'</form>' \
             		'</div></div>' \
-           '</body>' \
-           '</html>'
+          '</body>' \
+          '</html>'
 
 def process_error(message, next_page):
     """
