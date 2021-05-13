@@ -30,7 +30,7 @@ def index():
 
 @app.route('/home', methods=['GET'])
 def home():
-    return render_template("home.html")
+    return render_template('home.html', logged=True, nickname=session['user_name'],  messages = session['messages'])
     
 
 
@@ -106,17 +106,21 @@ def processSignup():
 
 @app.route('/processHome', methods=['GET', 'POST'])
 def processHome():
-	missing = []
-	fields = ['message', 'last', 'post_submit']
-	for field in fields:
-		value = request.form.get(field, None)
-		if value is None:
-			missing.append(field)
-	if missing:
-		return process_missingFields(missing, "/home")
-
     
-	return render_template("home.html", logged=True, nickname=session['user_name'], message=session['messages'])
+    if 'user_name' not in session:
+        return process_error("you must be logged to use the app / debe registrarse antes de usar la aplicacion",
+                             url_for("login"))
+    if request.method == 'POST' and request.form['message'] != "":
+        messages = session['messages']
+        if not messages:
+            messages = []
+        messages.append((time(), request.form['message']))
+        save_current_user()
+    else:  # The http GET method was used
+        messages = session['messages']
+    session['messages'] = messages
+    return render_template('home.html', logged=True, nickname=session['user_name'], messages=messages)
+
 
 def process_error(message, next_page):
     """

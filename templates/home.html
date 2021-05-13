@@ -9,6 +9,11 @@ Inicio - SocialED
     <form action="processHome" method="post" name="home">
         <label for="message">Escribe algo...</label>
         <div class="inputs">
+            {% for message in messages %}
+            <li> {{ message[1] }}</li>
+            {% endfor %}
+        </div>
+        <div class="inputs">
             <input id="message" name="message" required="true"
                    placeholder="Aquí tus bellas palabras..." maxlength="128" size="80"
                    type="text" value=""/>
