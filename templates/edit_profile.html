@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block titulo %}
-Inicio - SocialED
+Editar Perfil - SocialED
 {% endblock %}
 {% block contenido %}
 <a href="/">
@@ -34,7 +34,7 @@ Inicio - SocialED
             <input id="email" name="email" placeholder="Email" size="80" type="text" value="{{ email }}" readonly/>
         </div>
         <label for="Friends">
-            Amiguetes (Pulsa Ctrl (windows) / Command (Mac) para selección multiple)
+            Lista de tus Amigos (Pulsa Ctrl (windows) / Command (Mac) para selección multiple)
         </label>
         <div class="inputs">
             <select name="friends" size="5" multiple>
@@ -50,7 +50,7 @@ Inicio - SocialED
             <input id="passwd" name="passwd" placeholder="Password" size="80" type="password" value="{{ passwd }}"/>
         </div>
         <label for="confirm">
-            Se repetitivo con el Password
+            Repite el Password
             <div class="inputs">
                 <input id="confirm" name="confirm" placeholder="Repeat Password" size="80" type="password"
                        value="{{ passwd }}"/>
