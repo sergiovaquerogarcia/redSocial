@@ -3,8 +3,7 @@
 Inicio - SocialED
 {% endblock %}
 {% block contenido %}
-<h1>Hola internauta, Qué tal estás?</h1>
-<h2>{{ nickname}}</h2>
+<h1>Hola internauta {{ nickname}}, Qué tal estás?</h1>
 <div>
     <form action="processHome" method="post" name="home">
         <label for="message">Escribe algo...</label>

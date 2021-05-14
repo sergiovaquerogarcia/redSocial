@@ -24,7 +24,15 @@ def process_missingFields(campos, next_page):
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template("index.html")
+
+    if 'user_name' in session:
+        #logged = True
+        #nickname = session['user_name']
+        return render_template("index.html", logged=True, nickname=session['user_name'])
+    else:
+        #logged = False
+        #nickname = ''
+        return render_template("index.html", logged=False, nickname='')
     
 
 
