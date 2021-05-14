@@ -3,6 +3,7 @@
 Inicio - SocialED
 {% endblock %}
 {% block contenido %}
+<a href="/">SocialED</a> | <a href="profile">Perfil</a> | <a href="login">Salir {{nickname}}</a>
 <h1>Hola internauta {{ nickname}}, Qué tal estás?</h1>
 <div>
     <form action="processHome" method="post" name="home">
@@ -23,4 +24,15 @@ Inicio - SocialED
         </div>
     </form>
 </div>
+<form>
+    <label for="post">
+        Cosas de tus amistades...:
+    </label>
+    <div class="inputs">
+        {% for message in friends_messages %}
+        <li> {{ message[0] }}: {{ message[2] }}</li>
+        {% endfor %}
+    </div>
+
+</form>
 {% endblock %}
