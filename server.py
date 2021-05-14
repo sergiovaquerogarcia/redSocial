@@ -1,4 +1,5 @@
 # -*- coding: iso-8859-15 -*-
+# Creado por: Sergio Vaquero
 
 import json
 from flask import Flask, request, render_template, session, redirect, url_for
@@ -176,8 +177,7 @@ def load_user(email, passwd):
     session['email'] = email
     session['friends'] = data['friends']
     return redirect(url_for("home"))
-    #return render_template('home.html', logged=True, nickname=session['user_name'], messages=session['messages'])
-
+    
 def save_current_user():
     datos = {
         "user_name": session["user_name"],
@@ -225,8 +225,7 @@ def create_user_file(name, email, passwd, passwd_confirmation):
     session['friends'] = []
     session['email'] = email
     return redirect(url_for("home"))
-    #return render_template('home.html', logged=True, nickname=session['user_name'], messages=session['messages'])
-
+    
 def get_friends_messages_with_authors():
     """
     Obtiene los mensajes de los amigos  (del usuario de la sesión)
