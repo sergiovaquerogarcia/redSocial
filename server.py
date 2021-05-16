@@ -1,5 +1,4 @@
-# -*- coding: iso-8859-15 -*-
-# Creado por: Sergio Vaquero
+# Hecho por: Grupo 6
 
 import json
 from flask import Flask, request, render_template, session, redirect, url_for
