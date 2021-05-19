@@ -1,24 +1,18 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="utf-8"/>
-    <link href="static/css/socialed-style.css" rel="stylesheet" type="text/css"/>
-    <title>
-        Inicio - SocialED
-    </title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block titulo %}
+Error - SocialED
+{% endblock %}
+{% block contenido %}
 <h1>
     Error
 </h1>
-Lamentablemente ha ocurrido el siguiente error:
----> {{ error_message }} <---
 <div>
     <form action="{{ next }}" method="get">
+        <p><strong></strong>Lo siento amigo, ha ocurrido el siguiente error:
+            {{ error_message }}</strong></p>
         <div class="inputs">
             <input id="next" name="next" type="submit" value="Continue"/>
         </div>
     </form>
 </div>
-</body>
-</html>
+{% endblock %}
